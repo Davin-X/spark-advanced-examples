@@ -14,56 +14,57 @@ spark-advanced-examples/
 │   ├── basic-streaming/            # Socket-based streaming
 │   ├── structured-streaming/       # Structured Streaming API
 │   └── file-streaming/             # File-based streaming
+├── notebooks/                      # Interactive Python tutorials ⭐ NEW
+│   ├── kafka_integration.ipynb     # PySpark Kafka examples
+│   ├── streaming_concepts.ipynb    # Streaming concepts guide
+│   └── README.md                   # Notebook usage guide
 └── tools/                         # Build and configuration files
 ```
 
 ## Technology Coverage
 
-### Connectivity Examples
+### Connectivity Examples (Scala)
 - **Apache Kafka**: Producer/consumer patterns with Scala
 - **Apache Hive**: Data warehouse integration and table management
 - **JDBC Databases**: MySQL connectivity and connection management
 
-### Streaming Applications
+### Streaming Applications (Scala)
 - **Socket Streaming**: TCP-based real-time data processing
 - **Structured Streaming**: DataFrame-based streaming with SQL operations
 - **File Streaming**: Directory monitoring and incremental file processing
+
+### Interactive Notebooks (Python) ⭐
+- **Kafka Integration**: PySpark Structured Streaming with Kafka
+- **Streaming Concepts**: Comprehensive streaming tutorial
+- **Educational Focus**: Hands-on learning with runnable code
 
 ## Quick Start
 
 ### Prerequisites
 - Apache Spark 3.0+
-- Scala 2.12+
-- Java 8+
+- Scala 2.12+ (for Scala examples)
+- Python 3.8+ (for notebooks)
 - SBT or Maven
 
-### Running Examples
-
-#### Kafka Integration
+### Running Scala Examples
 ```bash
-# Start Kafka (using Docker)
-docker run -d --name kafka -p 9092:9092 spotify/kafka
-
-# Run producer
+# Kafka producer
 sbt "runMain HelloProducer"
 
-# Run consumer (separate terminal)
-sbt "runMain HelloConsumer"
-```
-
-#### Streaming Examples
-```bash
 # Socket streaming
 sbt "runMain streaming.SocketStreaming"
-
-# Structured streaming
-sbt "runMain streaming.StructuredStreaming"
 ```
 
-#### Database Connectivity
+### Running Python Notebooks ⭐
 ```bash
-# MySQL connection
-sbt "runMain MysqlJDBCConnect"
+# Install Jupyter and PySpark
+pip install jupyter pyspark
+
+# Start notebooks
+cd notebooks/
+jupyter notebook
+
+# Open kafka_integration.ipynb or streaming_concepts.ipynb
 ```
 
 ## Learning Objectives
@@ -78,26 +79,33 @@ sbt "runMain MysqlJDBCConnect"
 - Use Structured Streaming for complex transformations
 - Handle stateful operations and windowing
 
-### Production Patterns
-- Error handling and fault tolerance
-- Configuration management
-- Performance optimization techniques
+### Interactive Learning ⭐
+- Experiment with PySpark in Jupyter notebooks
+- Understand concepts through runnable examples
+- Compare Scala and Python implementations
+
+## Content Types
+
+### 📄 Scala Source Files
+Production-ready implementations for enterprise use cases.
+
+### 📓 Python Notebooks ⭐
+Interactive educational content with runnable examples.
+
+### 🛠️ Build Configuration
+SBT, Maven, and logging configurations.
 
 ## Examples Overview
 
 ### Kafka Examples
-- **HelloProducer.scala**: Basic message publishing
-- **HelloConsumer.scala**: Message consumption and processing
-- **HelloProducerTest.scala**: Testing and validation patterns
-
-### Hive Examples
-- **FileToHiveTable.scala**: CSV to Hive table conversion
-- **connectDockerHive.scala**: Docker-based Hive connectivity
+- **HelloProducer.scala**: Basic message publishing (Scala)
+- **HelloConsumer.scala**: Message consumption and processing (Scala)
+- **[kafka_integration.ipynb](notebooks/kafka_integration.ipynb)**: PySpark Structured Streaming (Python) ⭐
 
 ### Streaming Examples
-- **Basic Streaming**: Socket-based text processing
-- **Structured Streaming**: SQL-like operations on streams
-- **File Streaming**: Real-time file system monitoring
+- **Basic Streaming**: Socket-based text processing (Scala)
+- **Structured Streaming**: SQL-like operations on streams (Scala)
+- **[streaming_concepts.ipynb](notebooks/streaming_concepts.ipynb)**: Comprehensive streaming guide (Python) ⭐
 
 ## Build Configuration
 
@@ -115,8 +123,12 @@ libraryDependencies ++= Seq(
 )
 ```
 
-### Maven (pom.xml)
-Available in `tools/pom.xml` with complete dependency management.
+### Python (requirements.txt)
+```
+pyspark>=3.5.0
+jupyter>=1.0.0
+kafka-python>=2.0.0
+```
 
 ## Documentation Links
 
@@ -126,11 +138,13 @@ Available in `tools/pom.xml` with complete dependency management.
 
 ## Contributing
 
-Add new examples following the existing structure:
-- Place connectivity examples in `connectivity/`
-- Add streaming examples to `streaming/`
-- Include build dependencies in `tools/`
+### Scala Examples
+Add new examples in the appropriate `connectivity/` or `streaming/` subdirectories.
+
+### Python Notebooks ⭐
+Add educational notebooks to `notebooks/` that complement Scala examples.
 
 ---
 
-**Focus: Production-ready Spark integrations and streaming patterns**
+**🚀 For hands-on learning: Start with [notebooks/](notebooks/)**
+**🏭 For production code: Use the Scala examples in [connectivity/](connectivity/) and [streaming/](streaming/)**
