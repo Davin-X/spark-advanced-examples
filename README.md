@@ -1,227 +1,136 @@
-# 🚀 Spark Advanced Examples
+# Spark Advanced Examples
 
-[![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5.0-red.svg)](https://spark.apache.org/)
-[![Scala](https://img.shields.io/badge/Scala-2.12+-orange.svg)](https://scala-lang.org/)
+Production-ready Scala examples for Apache Spark integrations and streaming applications.
 
-**Advanced Spark Code Examples - Connectivity, Streaming, and Big Data Pipelines!** Production-ready Scala examples for Kafka integration, Hive connectivity, database connections, and real-time streaming applications.
-
----
-
-## 🎯 **Repository Overview**
-
-This repository consolidates **2 major Spark example repositories**:
-
-### 📚 **Core Components:**
-1. **🔗 Connectivity Examples** - Kafka, Hive, and Database Integration
-2. **⚡ Streaming Applications** - Real-time Data Processing with Spark Streaming
-3. **🏗️ Production Patterns** - Enterprise-scale Spark architectures
-
----
-
-## 🏗️ **Repository Structure**
+## Repository Structure
 
 ```
-📦 spark-advanced-examples/                 # Advanced Spark Examples
-├── 📖 README.md                             # You're reading it!
-├──
-├── 🔗 connectivity/                         # External System Integration
-│   ├── kafka-producer-consumer/             # Kafka messaging examples
-│   │   ├── HelloProducer.scala              # Kafka producer implementation
-│   │   ├── HelloConsumer.scala              # Kafka consumer implementation
-│   │   └── HelloProducer_test.scala         # Producer testing
-│   ├── hive-integration/                    # Hive data warehouse examples
-│   │   ├── FileToHiveTable.scala            # CSV to Hive table
-│   │   ├── connectDockerHive.scala          # Docker Hive connectivity
-│   │   └── metastore_db/                    # Hive metastore configuration
-│   └── jdbc-connections/                    # Database connectivity
-│       ├── MysqlJDBCConnect.scala           # MySQL JDBC connection
-│       └── AppConfigs.scala                 # Configuration management
-├──
-├── ⚡ streaming/                            # Real-time Data Processing
-│   ├── basic-streaming/                     # Socket-based streaming
-│   │   ├── streaming_1.scala                # Basic socket streaming
-│   │   ├── streaming_2.scala                # Advanced socket processing
-│   │   ├── streaming_3.scala                # Error handling and recovery
-│   │   └── streaming_4.scala                # Streaming transformations
-│   ├── structured-streaming/               # Structured Streaming API
-│   │   ├── struct_streaming_1.scala         # Structured streaming basics
-│   │   ├── struct_streaming_2.scala         # Complex transformations
-│   │   ├── struct_streaming_3.scala         # Windowing operations
-│   │   └── struct_streaming_4.scala         # State management
-│   └── file-streaming/                      # File-based streaming
-│       ├── streaming_file.scala             # File stream processing
-│       ├── inputfolder/                     # Sample input files
-│       └── outputfolder/                    # Generated output
-├──
-├── 🛠️ tools/                               # Development utilities
-│   ├── build.sbt                            # SBT build configuration
-│   ├── pom.xml                             # Maven build configuration
-│   └── log4j.properties                    # Logging configuration
-├──
-├── 📚 resources/                           # Configuration and data
-│   ├── AppConfigs.scala                    # Application configurations
-│   └── sample-data/                        # Sample input files
-├──
-└── 🗄️ archive/                            # Original source preservation
-    ├── spark-kafka-hive-connctivity-examples/ # Connectivity examples source
-    └── Spark-Streaming--Socket/            # Streaming examples source
+spark-advanced-examples/
+├── connectivity/                    # External system integration
+│   ├── kafka-producer-consumer/     # Kafka messaging examples
+│   ├── hive-integration/           # Hive data warehouse examples
+│   └── jdbc-connections/           # Database connectivity
+├── streaming/                      # Real-time data processing
+│   ├── basic-streaming/            # Socket-based streaming
+│   ├── structured-streaming/       # Structured Streaming API
+│   └── file-streaming/             # File-based streaming
+└── tools/                         # Build and configuration files
 ```
 
----
+## Technology Coverage
 
-## 🎯 **Technology Coverage**
+### Connectivity Examples
+- **Apache Kafka**: Producer/consumer patterns with Scala
+- **Apache Hive**: Data warehouse integration and table management
+- **JDBC Databases**: MySQL connectivity and connection management
 
-### **🔗 Connectivity Layer**
+### Streaming Applications
+- **Socket Streaming**: TCP-based real-time data processing
+- **Structured Streaming**: DataFrame-based streaming with SQL operations
+- **File Streaming**: Directory monitoring and incremental file processing
 
-#### **Apache Kafka Integration**
-- **Message Production:** High-throughput data publishing
-- **Consumer Patterns:** Real-time data consumption and processing
-- **Testing Frameworks:** Producer/consumer validation strategies
+## Quick Start
 
-#### **Apache Hive Integration**
-- **Data Warehousing:** Table creation from files
-- **Metastore Management:** Hive catalog and metadata operations
-- **Docker Connectivity:** Containerized Hive deployments
+### Prerequisites
+- Apache Spark 3.0+
+- Scala 2.12+
+- Java 8+
+- SBT or Maven
 
-#### **Database Connectivity**
-- **JDBC Integration:** MySQL and relational databases
-- **Connection Management:** Connection pooling and configuration
-- **Error Handling:** Robust database failure recovery
+### Running Examples
 
-### **⚡ Streaming Layer**
-
-#### **Socket-Based Streaming**
-- **Network Streaming:** TCP socket data ingestion
-- **Processing Patterns:** Real-time data transformations
-- **Fault Tolerance:** Stream processing reliability
-
-#### **Structured Streaming**
-- **DataFrame Operations:** SQL-like streaming queries
-- **Windowing Functions:** Time-based aggregations
-- **State Management:** Persistent streaming state
-
-#### **File Streaming**
-- **Directory Monitoring:** Real-time file system changes
-- **JSON Processing:** Structured data formats
-- **Checkpointing:** Stream processing recovery
-
----
-
-## 🛠️ **Setup & Requirements**
-
-### **Prerequisites**
+#### Kafka Integration
 ```bash
-# Apache Spark 3.0+
-# Scala 2.12+
-# Java 8+
-# Maven/Gradle or SBT
-```
-
-### **External Dependencies**
-- **Kafka:** For messaging examples
-- **MySQL:** For database connectivity
-- **Hive:** For warehouse examples
-- **Docker:** For containerized services
-
-### **Running the Examples**
-
-#### **Kafka Examples**
-```bash
-# Start Kafka cluster
+# Start Kafka (using Docker)
 docker run -d --name kafka -p 9092:9092 spotify/kafka
 
-# Run producer example
-sbt "runMain org.example.HelloProducer"
+# Run producer
+sbt "runMain HelloProducer"
 
-# Run consumer in another terminal
-sbt "runMain org.example.HelloConsumer"
+# Run consumer (separate terminal)
+sbt "runMain HelloConsumer"
 ```
 
-#### **Streaming Examples**
+#### Streaming Examples
 ```bash
-# Basic socket streaming
+# Socket streaming
 sbt "runMain streaming.SocketStreaming"
 
 # Structured streaming
 sbt "runMain streaming.StructuredStreaming"
-
-# File streaming
-sbt "runMain streaming.FileStreaming"
 ```
 
+#### Database Connectivity
+```bash
+# MySQL connection
+sbt "runMain MysqlJDBCConnect"
+```
+
+## Learning Objectives
+
+### Enterprise Integration
+- Connect Spark with Kafka, Hive, and relational databases
+- Implement producer-consumer messaging patterns
+- Build reliable data pipelines
+
+### Real-Time Processing
+- Process streaming data with Spark Streaming
+- Use Structured Streaming for complex transformations
+- Handle stateful operations and windowing
+
+### Production Patterns
+- Error handling and fault tolerance
+- Configuration management
+- Performance optimization techniques
+
+## Examples Overview
+
+### Kafka Examples
+- **HelloProducer.scala**: Basic message publishing
+- **HelloConsumer.scala**: Message consumption and processing
+- **HelloProducerTest.scala**: Testing and validation patterns
+
+### Hive Examples
+- **FileToHiveTable.scala**: CSV to Hive table conversion
+- **connectDockerHive.scala**: Docker-based Hive connectivity
+
+### Streaming Examples
+- **Basic Streaming**: Socket-based text processing
+- **Structured Streaming**: SQL-like operations on streams
+- **File Streaming**: Real-time file system monitoring
+
+## Build Configuration
+
+### SBT (build.sbt)
+```scala
+name := "spark-advanced-examples"
+version := "1.0"
+scalaVersion := "2.12.15"
+
+libraryDependencies ++= Seq(
+  "org.apache.spark" %% "spark-core" % "3.5.0",
+  "org.apache.spark" %% "spark-streaming" % "3.5.0",
+  "org.apache.spark" %% "spark-sql" % "3.5.0",
+  "org.apache.kafka" % "kafka-clients" % "3.4.0"
+)
+```
+
+### Maven (pom.xml)
+Available in `tools/pom.xml` with complete dependency management.
+
+## Documentation Links
+
+- [Spark Streaming Guide](https://spark.apache.org/docs/latest/streaming-programming-guide.html)
+- [Structured Streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
+- [Kafka Integration](https://spark.apache.org/docs/latest/streaming-kafka-integration.html)
+
+## Contributing
+
+Add new examples following the existing structure:
+- Place connectivity examples in `connectivity/`
+- Add streaming examples to `streaming/`
+- Include build dependencies in `tools/`
+
 ---
 
-## 🎯 **Learning Outcomes**
-
-After exploring these examples, you'll understand:
-
-### **🔗 Enterprise Integration**
-- **Big Data Ecosystems:** Connecting Spark with Kafka, Hive, databases
-- **Data Pipelines:** Building reliable data flow architectures
-- **Scalability Patterns:** Distributed system design principles
-
-### **⚡ Real-Time Processing**
-- **Streaming Architectures:** Real-time data processing patterns
-- **Fault Tolerance:** Resilient stream processing
-- **Performance Tuning:** Optimizing throughput and latency
-
-### **🏭 Production Excellence**
-- **Configuration Management:** Enterprise application configs
-- **Logging & Monitoring:** Production observability patterns
-- **Error Handling:** Robust failure recovery strategies
-
----
-
-## 📝 **Examples Included**
-
-### **Producer-Consumer Patterns**
-- Kafka message publishing with varying throughput
-- Consumer group management and offset handling
-- Error recovery and dead letter queues
-
-### **Data Warehouse Integration**
-- Hive table creation from CSV and JSON files
-- Partitioned table management
-- Query optimization and performance tuning
-
-### **Streaming Transformations**
-- Complex event processing pipelines
-- Time-series data aggregation
-- Machine learning on streaming data
-
----
-
-## 🏆 **Professional Value**
-
-This repository demonstrates:
-
-- **🚀 Scalability:** Production-ready distributed systems
-- **🔒 Reliability:** Error handling and fault tolerance
-- **📊 Performance:** Optimized data processing pipelines
-- **🏗️ Architecture:** Enterprise-scale application patterns
-
----
-
-## 🤝 **Contributions & Learning**
-
-These examples serve as:
-
-- **🚀 Starting Points:** For your Spark projects
-- **📚 Learning Resources:** Understanding advanced concepts
-- **💼 Portfolio Pieces:** Demonstrating production capabilities
-- **🤝 Community Assets:** Shared knowledge and patterns
-
----
-
-## 📞 **Support & Documentation**
-
-### **Official Documentation**
-- [Spark Streaming Programming Guide](https://spark.apache.org/docs/latest/streaming-programming-guide.html)
-- [Structured Streaming Documentation](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
-- [Spark SQL Documentation](https://spark.apache.org/docs/latest/sql-programming-guide.html)
-
----
-
-*"Spark is not just a framework - it's a way of thinking about distributed data processing. These examples show you how to build systems that scale beyond imagination."*
-
-**⚡ Happy Spark Engineering! May your pipelines always stream smoothly.** 🏮
+**Focus: Production-ready Spark integrations and streaming patterns**
