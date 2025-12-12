@@ -27,6 +27,27 @@ Since actual Scala Jupyter notebooks require complex setup (Almond kernel, etc.)
 - Windowing operations and state management
 - Error handling and fault tolerance
 
+### [hive-integration-examples.md](hive-integration-examples.md)
+**Hive Data Warehouse Integration**
+- File to Hive table conversion (FileToHiveTable.scala)
+- Docker Hive connectivity (connectDockerHive.scala)
+- Partitioned tables and performance optimization
+- Data warehousing patterns
+
+### [jdbc-mysql-examples.md](jdbc-mysql-examples.md)
+**JDBC/MySQL Database Integration**
+- Basic JDBC connections (MysqlJDBCConnect.scala)
+- Configuration management (AppConfigs.scala)
+- Connection pooling and performance
+- Production database integration
+
+### [advanced-streaming-examples.md](advanced-streaming-examples.md)
+**Advanced Streaming Patterns**
+- Multiple streaming examples (streaming_*.scala files)
+- Complex transformations and aggregations
+- Fault tolerance and error handling
+- Performance optimization techniques
+
 ## How to Use
 
 ### 1. Choose Your Environment
@@ -75,7 +96,22 @@ brew install kafka  # macOS
 nc -lk 9999
 
 # For file streaming, create data directory
-mkdir -p /tmp/streaming-data
+mkdir -p /tmp/streaming-input
+```
+
+### For Hive Examples
+```bash
+# Start Hive Docker container
+docker run -d --name hive-server -p 10000:10000 -p 10002:10002 \
+  --env SERVICE_NAME=hiveserver2 apache/hive:4.0.0
+```
+
+### For MySQL Examples
+```bash
+# Install MySQL and create database
+mysql -u root -p -e "CREATE DATABASE testdb;"
+mysql -u root -p -e "CREATE USER 'spark'@'localhost' IDENTIFIED BY 'password';"
+mysql -u root -p -e "GRANT ALL PRIVILEGES ON testdb.* TO 'spark'@'localhost';"
 ```
 
 ## Learning Approach
@@ -136,6 +172,14 @@ mkdir -p /tmp/streaming-data
 5. **Observe word counts** in streaming output
 6. **Try windowed operations** for advanced processing
 
+### Learning Database Integration
+
+1. **Read jdbc-mysql-examples.md**
+2. **Set up MySQL** database and user
+3. **Copy JDBC connection code** to SBT
+4. **Run and observe** data reading/writing
+5. **Try configuration management** examples
+
 ## Troubleshooting
 
 ### Common Issues
@@ -146,7 +190,7 @@ mkdir -p /tmp/streaming-data
 - Verify import statements
 
 **Runtime errors:**
-- Check external services (Kafka, netcat) are running
+- Check external services (Kafka, MySQL, Hive) are running
 - Verify network connectivity and ports
 - Check file permissions for data directories
 
@@ -163,6 +207,26 @@ Add new "notebook" files following this format:
 - Include setup instructions
 - Add explanations for complex concepts
 - Provide troubleshooting tips
+
+## Repository Coverage
+
+These notebooks cover all major Scala files in the repository:
+
+| Scala File | Notebook Coverage |
+|------------|------------------|
+| HelloProducer.scala | kafka-scala-examples.md |
+| HelloConsumer.scala | kafka-scala-examples.md |
+| HelloProducerTest.scala | kafka-scala-examples.md |
+| FileToHiveTable.scala | hive-integration-examples.md |
+| connectDockerHive.scala | hive-integration-examples.md |
+| MysqlJDBCConnect.scala | jdbc-mysql-examples.md |
+| AppConfigs.scala | jdbc-mysql-examples.md |
+| streaming_1.scala | advanced-streaming-examples.md |
+| streaming_2.scala | advanced-streaming-examples.md |
+| streaming_3.scala | advanced-streaming-examples.md |
+| streaming_4.scala | advanced-streaming-examples.md |
+| streaming_file.scala | advanced-streaming-examples.md |
+| struct_streaming_*.scala | advanced-streaming-examples.md |
 
 ---
 
